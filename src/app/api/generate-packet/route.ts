@@ -1,0 +1,150 @@
+import { NextRequest, NextResponse } from 'next/server'
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+
+export async function POST(request: NextRequest) {
+  try {
+    const supabase = createRouteHandlerClient({ cookies })
+    
+    // Get the current user
+    const { data: { user }, error: authError } = await supabase.auth.getUser()
+    if (authError || !user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const body = await request.json()
+    const { requestId } = body
+
+    if (!requestId) {
+      return NextResponse.json({ error: 'Request ID is required' }, { status: 400 })
+    }
+
+    // Get request details
+    const { data: request, error: requestError } = await supabase
+      .from('requests')
+      .select('*')
+      .eq('id', requestId)
+      .single()
+
+    if (requestError || !request) {
+      return NextResponse.json({ error: 'Request not found' }, { status: 404 })
+    }
+
+    // Get materials for this request
+    const { data: materials, error: materialsError } = await supabase
+      .from('materials')
+      .select('*')
+      .eq('request_id', requestId)
+      .order('created_at', { ascending: true })
+
+    if (materialsError) {
+      console.error('Error fetching materials:', materialsError)
+      return NextResponse.json({ error: 'Failed to fetch materials' }, { status: 500 })
+    }
+
+    // Generate DOCX content
+    const docxContent = generateDOCXContent(request, materials || [])
+
+    // Create a simple DOCX file (in production, you'd use a proper DOCX library)
+    const docxBuffer = Buffer.from(docxContent, 'utf-8')
+
+    // Save packet material
+    const { error: packetError } = await supabase
+      .from('materials')
+      .insert({
+        request_id: requestId,
+        kind: 'packet',
+        content: {
+          generated_at: new Date().toISOString(),
+          format: 'docx',
+          size: docxBuffer.length
+        }
+      })
+
+    if (packetError) {
+      console.error('Error saving packet:', packetError)
+    }
+
+    // Return the DOCX file
+    return new NextResponse(docxBuffer, {
+      headers: {
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'Content-Disposition': `attachment; filename="prior-auth-${requestId}.docx"`,
+        'Content-Length': docxBuffer.length.toString(),
+      },
+    })
+  } catch (error) {
+    console.error('Error generating packet:', error)
+    return NextResponse.json({ error: 'Failed to generate packet' }, { status: 500 })
+  }
+}
+
+function generateDOCXContent(request: any, materials: any[]) {
+  // Find the draft material
+  const draftMaterial = materials.find(m => m.kind === 'draft')
+  const summaryMaterial = materials.find(m => m.kind === 'summary')
+  
+  const draftContent = draftMaterial?.content || 'No draft available'
+  const summaryContent = summaryMaterial?.content || {}
+
+  // Simple DOCX-like content (in production, use a proper DOCX library like docx)
+  return `PRIOR AUTHORIZATION REQUEST PACKET
+
+Medical Aid: ${request.payer}
+Patient: ${request.patient_name || 'N/A'}
+Procedure: ${request.procedure_name || request.procedure_code}
+Request ID: ${request.id}
+Date: ${new Date().toLocaleDateString('en-ZA')}
+
+================================================================================
+
+CLINICAL SUMMARY
+
+${summaryContent.subjective ? `SUBJECTIVE:
+${summaryContent.subjective}
+
+` : ''}${summaryContent.objective ? `OBJECTIVE:
+${summaryContent.objective}
+
+` : ''}${summaryContent.assessment ? `ASSESSMENT:
+${summaryContent.assessment}
+
+` : ''}${summaryContent.plan ? `PLAN:
+${summaryContent.plan}
+
+` : ''}================================================================================
+
+PRIOR AUTHORIZATION DRAFT
+
+${typeof draftContent === 'string' ? draftContent : JSON.stringify(draftContent, null, 2)}
+
+================================================================================
+
+REQUIRED ATTACHMENTS
+
+1. X-ray images (AP and lateral views)
+2. MRI report (if available)
+3. Physiotherapy records
+4. Previous treatment records
+5. Pain assessment documentation
+
+================================================================================
+
+CLINICIAN CERTIFICATION
+
+I certify that the information provided in this prior authorization request is accurate and complete. The requested procedure is medically necessary for this patient.
+
+Clinician Name: _________________________
+Signature: _____________________________
+Date: _________________________________
+License Number: _______________________
+
+================================================================================
+
+AI-ASSISTED DRAFT - CLINICIAN REVIEW REQUIRED
+
+This document was generated with AI assistance. All clinical decisions and final content must be reviewed and approved by a qualified healthcare professional.
+
+Generated by Auruauth on ${new Date().toISOString()}
+Request ID: ${request.id}`
+}

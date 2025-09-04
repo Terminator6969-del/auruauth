@@ -1,0 +1,46 @@
+{
+  "cases": [
+    {
+      "id": "case-001",
+      "patient_name": "John Smith",
+      "age": 65,
+      "procedure": "TKR",
+      "payer": "Discovery",
+      "transcript": "Patient: Good morning, Doctor. I've been having severe knee pain for the past 6 months. It's getting worse and I can barely walk without limping.\n\nDoctor: I can see from your X-rays that you have severe osteoarthritis in your right knee. The joint space is significantly narrowed and there are bone spurs present.\n\nPatient: Yes, I've tried physiotherapy and pain medication, but nothing seems to help anymore. I can't even sleep properly because of the pain.\n\nDoctor: Based on your symptoms and imaging, I believe you would benefit from a total knee replacement. You're 65 years old, which is an appropriate age for this procedure.\n\nPatient: What does the recovery look like?\n\nDoctor: You would typically stay in hospital for 3-5 days, then continue physiotherapy as an outpatient. Most patients are walking with assistance within a day or two.\n\nPatient: That sounds like it would really help my quality of life.\n\nDoctor: I'll submit a prior authorization request to your medical aid for the total knee replacement.",
+      "soap": {
+        "subjective": "65-year-old male with 6-month history of progressive right knee pain. Pain is constant, sharp, and worse with weight-bearing activities. Patient reports significant functional limitation including difficulty walking, climbing stairs, and sleeping due to pain. Has tried 3 months of physiotherapy, NSAIDs, and intra-articular corticosteroid injection with minimal improvement.",
+        "objective": "Physical examination reveals moderate effusion, crepitus, and limited range of motion (flexion 90°, extension -5°) in right knee. Positive McMurray test. Significant antalgic gait. X-ray shows severe joint space narrowing, osteophytes, and subchondral sclerosis. MRI demonstrates full-thickness cartilage loss, meniscal tears, and bone marrow edema.",
+        "assessment": "Severe osteoarthritis of the right knee, Kellgren-Lawrence Grade 4. Conservative treatments have been exhausted with minimal benefit. Patient meets criteria for total knee replacement.",
+        "plan": "1. Total knee replacement (TKR) recommended for right knee\n2. Submit prior authorization to medical aid\n3. Pre-operative assessment and optimization\n4. Patient education regarding procedure and recovery\n5. Continue pain management until surgery"
+      }
+    },
+    {
+      "id": "case-002",
+      "patient_name": "Sarah Johnson",
+      "age": 58,
+      "procedure": "THR",
+      "payer": "Bonitas",
+      "transcript": "Patient: Hello Doctor, I've been having terrible hip pain for over a year now. It's affecting my daily activities and I can't even put on my shoes without help.\n\nDoctor: I can see from your examination and X-rays that you have severe osteoarthritis of the left hip. The joint space is almost completely gone and there are significant bone spurs.\n\nPatient: I've been doing physiotherapy for 6 months and taking pain medication, but the pain is getting worse. I can barely walk more than a few steps without severe pain.\n\nDoctor: Your BMI is 28, which is within acceptable limits for surgery. Given your age of 58 and the severity of your condition, I recommend a total hip replacement.\n\nPatient: How long will I be in hospital?\n\nDoctor: Typically 3-4 days, followed by intensive physiotherapy. Most patients are walking with a walker within 24 hours of surgery.\n\nPatient: That sounds much better than living with this pain.\n\nDoctor: I'll submit the prior authorization to Bonitas. They typically require 12 months of conservative treatment documentation, which you have.",
+      "soap": {
+        "subjective": "58-year-old female with 12-month history of progressive left hip pain. Pain is severe, constant, and significantly limits daily activities including dressing, walking, and sleeping. Patient reports inability to put on shoes independently. Has completed 6 months of physiotherapy and takes regular NSAIDs with minimal relief.",
+        "objective": "Physical examination shows antalgic gait, limited range of motion (flexion 80°, internal rotation 10°), and positive Trendelenburg sign. X-ray reveals severe joint space narrowing, osteophytes, and subchondral sclerosis. BMI is 28. Harris Hip Score is 45/100.",
+        "assessment": "Severe osteoarthritis of the left hip, Kellgren-Lawrence Grade 4. Conservative treatments have been exhausted. Patient meets criteria for total hip replacement.",
+        "plan": "1. Total hip replacement (THR) recommended for left hip\n2. Submit prior authorization to Bonitas\n3. Pre-operative assessment including cardiac clearance\n4. Patient education regarding procedure and recovery\n5. Continue pain management until surgery"
+      }
+    },
+    {
+      "id": "case-003",
+      "patient_name": "Michael Brown",
+      "age": 28,
+      "procedure": "ACL_RECON",
+      "payer": "Discovery",
+      "transcript": "Patient: Hi Doctor, I injured my knee playing soccer 3 months ago. I heard a pop and couldn't continue playing. My knee keeps giving way when I try to run or change direction.\n\nDoctor: Based on your history and the MRI results, you have a complete tear of your anterior cruciate ligament. The Lachman test is positive, confirming the diagnosis.\n\nPatient: I've been doing physiotherapy for 3 months, but my knee still feels unstable. I really want to get back to playing soccer.\n\nDoctor: At your age of 28 and with your activity level, ACL reconstruction is definitely recommended. Conservative treatment alone won't restore the stability you need for sports.\n\nPatient: What's the recovery time?\n\nDoctor: You'll be on crutches for 2-4 weeks, then intensive physiotherapy for 6-9 months. Most athletes return to sport after 9-12 months.\n\nPatient: That's fine, I just want to be able to play again without my knee giving way.\n\nDoctor: I'll submit the prior authorization to Discovery. Given your age and activity level, this should be approved without issues.",
+      "soap": {
+        "subjective": "28-year-old male with 3-month history of left knee instability following soccer injury. Patient heard a 'pop' during the injury and was unable to continue playing. Reports persistent giving-way episodes with running and direction changes. Has completed 3 months of physiotherapy with minimal improvement in stability.",
+        "objective": "Physical examination reveals positive Lachman test, positive pivot shift test, and mild effusion. MRI confirms complete tear of the anterior cruciate ligament with associated bone bruising. Range of motion is full. No meniscal pathology identified.",
+        "assessment": "Complete tear of the anterior cruciate ligament, left knee. Conservative treatment has been attempted but patient continues to experience functional instability. Patient is young, active, and desires to return to sports.",
+        "plan": "1. ACL reconstruction recommended for left knee\n2. Submit prior authorization to Discovery\n3. Pre-operative assessment and optimization\n4. Patient education regarding procedure and recovery\n5. Post-operative rehabilitation planning"
+      }
+    }
+  ]
+}

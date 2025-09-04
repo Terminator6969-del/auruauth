@@ -1,0 +1,304 @@
+{
+  "payers": {
+    "Discovery": {
+      "procedures": {
+        "TKR": {
+          "name": "Total Knee Replacement",
+          "code": "TKR",
+          "requirements": [
+            "Patient Age (minimum 50 years)",
+            "Diagnosis of severe osteoarthritis",
+            "Symptom Duration (minimum 6 months)",
+            "Failed Conservative Treatments",
+            "Functional Limitations",
+            "Imaging Findings (X-ray/MRI)",
+            "Pain Score Documentation"
+          ],
+          "attachments": [
+            "X-ray images (AP and lateral views)",
+            "MRI report (if available)",
+            "Physiotherapy records",
+            "Previous treatment records",
+            "Pain assessment documentation"
+          ],
+          "criteria": {
+            "age_minimum": 50,
+            "symptom_duration_months": 6,
+            "kellgren_lawrence_grade": 3,
+            "failed_treatments": ["physiotherapy", "nsaids", "injections"]
+          }
+        },
+        "THR": {
+          "name": "Total Hip Replacement",
+          "code": "THR",
+          "requirements": [
+            "Patient Age (minimum 50 years)",
+            "Diagnosis of severe osteoarthritis",
+            "Symptom Duration (minimum 6 months)",
+            "Failed Conservative Treatments",
+            "Functional Limitations",
+            "Imaging Findings (X-ray/MRI)",
+            "Harris Hip Score"
+          ],
+          "attachments": [
+            "X-ray images (AP and lateral views)",
+            "MRI report (if available)",
+            "Physiotherapy records",
+            "Harris Hip Score assessment"
+          ],
+          "criteria": {
+            "age_minimum": 50,
+            "symptom_duration_months": 6,
+            "harris_hip_score_max": 70,
+            "failed_treatments": ["physiotherapy", "nsaids", "injections"]
+          }
+        },
+        "ACL_RECON": {
+          "name": "ACL Reconstruction",
+          "code": "ACL_RECON",
+          "requirements": [
+            "Patient Age (typically 16-50 years)",
+            "ACL Tear Confirmation (MRI)",
+            "Functional Instability",
+            "Failed Conservative Treatment",
+            "Activity Level Documentation",
+            "Lachman Test Results"
+          ],
+          "attachments": [
+            "MRI report confirming ACL tear",
+            "Physical examination findings",
+            "Conservative treatment records",
+            "Activity level documentation"
+          ],
+          "criteria": {
+            "age_minimum": 16,
+            "age_maximum": 50,
+            "acl_tear_confirmed": true,
+            "functional_instability": true,
+            "conservative_treatment_duration": 3
+          }
+        },
+        "ROTATOR_CUFF": {
+          "name": "Rotator Cuff Repair",
+          "code": "ROTATOR_CUFF",
+          "requirements": [
+            "Patient Age (typically 40+ years)",
+            "Rotator Cuff Tear Confirmation (MRI)",
+            "Pain and Functional Limitation",
+            "Failed Conservative Treatment",
+            "Range of Motion Assessment"
+          ],
+          "attachments": [
+            "MRI report confirming rotator cuff tear",
+            "Physical examination findings",
+            "Conservative treatment records",
+            "Range of motion documentation"
+          ],
+          "criteria": {
+            "age_minimum": 40,
+            "tear_size_minimum": "partial",
+            "conservative_treatment_duration": 3,
+            "functional_limitation": true
+          }
+        },
+        "LUMBAR_FUSION": {
+          "name": "Lumbar Spinal Fusion",
+          "code": "LUMBAR_FUSION",
+          "requirements": [
+            "Patient Age (typically 18+ years)",
+            "Spinal Pathology Confirmation (MRI/CT)",
+            "Failed Conservative Treatment",
+            "Functional Limitation",
+            "Pain Documentation",
+            "Neurological Assessment"
+          ],
+          "attachments": [
+            "MRI/CT report",
+            "Conservative treatment records",
+            "Pain assessment documentation",
+            "Neurological examination findings"
+          ],
+          "criteria": {
+            "age_minimum": 18,
+            "conservative_treatment_duration": 6,
+            "neurological_deficit": false,
+            "instability_confirmed": true
+          }
+        },
+        "KNEE_ARTHROSCOPY": {
+          "name": "Knee Arthroscopy",
+          "code": "KNEE_ARTHROSCOPY",
+          "requirements": [
+            "Patient Age (typically 16+ years)",
+            "Knee Pathology Confirmation (MRI)",
+            "Failed Conservative Treatment",
+            "Functional Limitation",
+            "Locking/Catching Symptoms"
+          ],
+          "attachments": [
+            "MRI report",
+            "Conservative treatment records",
+            "Physical examination findings"
+          ],
+          "criteria": {
+            "age_minimum": 16,
+            "conservative_treatment_duration": 3,
+            "mechanical_symptoms": true
+          }
+        },
+        "CARPAL_TUNNEL": {
+          "name": "Carpal Tunnel Release",
+          "code": "CARPAL_TUNNEL",
+          "requirements": [
+            "Patient Age (typically 18+ years)",
+            "Carpal Tunnel Syndrome Confirmation (EMG)",
+            "Failed Conservative Treatment",
+            "Nocturnal Symptoms",
+            "Functional Limitation"
+          ],
+          "attachments": [
+            "EMG/NCS report",
+            "Conservative treatment records",
+            "Symptom documentation"
+          ],
+          "criteria": {
+            "age_minimum": 18,
+            "emg_confirmed": true,
+            "conservative_treatment_duration": 3,
+            "nocturnal_symptoms": true
+          }
+        },
+        "FRACTURE_FIXATION": {
+          "name": "Fracture Fixation",
+          "code": "FRACTURE_FIXATION",
+          "requirements": [
+            "Patient Age (all ages)",
+            "Fracture Confirmation (X-ray/CT)",
+            "Displacement/Instability",
+            "Functional Limitation",
+            "Conservative Treatment Not Suitable"
+          ],
+          "attachments": [
+            "X-ray/CT images",
+            "Physical examination findings",
+            "Fracture classification"
+          ],
+          "criteria": {
+            "displacement_minimum": 2,
+            "instability": true,
+            "conservative_treatment_unsuitable": true
+          }
+        }
+      }
+    },
+    "Bonitas": {
+      "procedures": {
+        "TKR": {
+          "name": "Total Knee Replacement",
+          "code": "TKR",
+          "requirements": [
+            "Patient Age (minimum 55 years)",
+            "Diagnosis of severe osteoarthritis",
+            "Symptom Duration (minimum 12 months)",
+            "Failed Conservative Treatments",
+            "Functional Limitations",
+            "Imaging Findings",
+            "BMI Documentation"
+          ],
+          "attachments": [
+            "X-ray images",
+            "MRI report",
+            "Physiotherapy records",
+            "BMI documentation",
+            "Pain assessment"
+          ],
+          "criteria": {
+            "age_minimum": 55,
+            "symptom_duration_months": 12,
+            "bmi_maximum": 40,
+            "failed_treatments": ["physiotherapy", "nsaids", "injections"]
+          }
+        },
+        "THR": {
+          "name": "Total Hip Replacement",
+          "code": "THR",
+          "requirements": [
+            "Patient Age (minimum 55 years)",
+            "Diagnosis of severe osteoarthritis",
+            "Symptom Duration (minimum 12 months)",
+            "Failed Conservative Treatments",
+            "Functional Limitations",
+            "Imaging Findings",
+            "BMI Documentation"
+          ],
+          "attachments": [
+            "X-ray images",
+            "MRI report",
+            "Physiotherapy records",
+            "BMI documentation"
+          ],
+          "criteria": {
+            "age_minimum": 55,
+            "symptom_duration_months": 12,
+            "bmi_maximum": 40,
+            "failed_treatments": ["physiotherapy", "nsaids", "injections"]
+          }
+        }
+      }
+    },
+    "Momentum": {
+      "procedures": {
+        "TKR": {
+          "name": "Total Knee Replacement",
+          "code": "TKR",
+          "requirements": [
+            "Patient Age (minimum 60 years)",
+            "Diagnosis of severe osteoarthritis",
+            "Symptom Duration (minimum 6 months)",
+            "Failed Conservative Treatments",
+            "Functional Limitations",
+            "Imaging Findings",
+            "Quality of Life Assessment"
+          ],
+          "attachments": [
+            "X-ray images",
+            "MRI report",
+            "Physiotherapy records",
+            "Quality of life questionnaire"
+          ],
+          "criteria": {
+            "age_minimum": 60,
+            "symptom_duration_months": 6,
+            "quality_of_life_score": "poor",
+            "failed_treatments": ["physiotherapy", "nsaids", "injections"]
+          }
+        },
+        "THR": {
+          "name": "Total Hip Replacement",
+          "code": "THR",
+          "requirements": [
+            "Patient Age (minimum 60 years)",
+            "Diagnosis of severe osteoarthritis",
+            "Symptom Duration (minimum 6 months)",
+            "Failed Conservative Treatments",
+            "Functional Limitations",
+            "Imaging Findings",
+            "Quality of Life Assessment"
+          ],
+          "attachments": [
+            "X-ray images",
+            "MRI report",
+            "Physiotherapy records",
+            "Quality of life questionnaire"
+          ],
+          "criteria": {
+            "age_minimum": 60,
+            "symptom_duration_months": 6,
+            "quality_of_life_score": "poor",
+            "failed_treatments": ["physiotherapy", "nsaids", "injections"]
+          }
+        }
+      }
+    }
+  }
+}
